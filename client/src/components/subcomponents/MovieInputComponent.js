@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class MovieInputComponent extends Component {
   constructor(props) {
@@ -16,7 +17,10 @@ class MovieInputComponent extends Component {
 
   handleMovieSubmit(event) {
     event.preventDefault
-    // this.state.movieTitle
+    axios.post('/api/add-movie', {movie: this.movieTitle})
+    .then((response) => {
+      console.log(response);
+    })
   }
 
   render() {
