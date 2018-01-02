@@ -1,0 +1,26 @@
+{
+  "name": "flixreview",
+  "version": "1.0.0",
+  "description": "A web application where you can rate and review netflix movies",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "app": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js",
+    "client": "nodemon start-client.js"
+  },
+  "author": "Dylan Terrell",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "chalk": "2.3.0",
+    "express": "4.16.2",
+    "express-validator": "4.3.0",
+    "mongoose": "5.0.0-rc0",
+    "morgan": "1.9.0",
+    "react-scripts": "1.0.17"
+  },
+  "devDependencies": {
+    "concurrently": "3.5.1"
+  }
+}

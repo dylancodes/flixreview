@@ -1,0 +1,32 @@
+{
+    "movieTitle": "Bad Boys",
+    "numberOfReviews": 5,
+    "avgRating": 3.8,
+    "reviews": [
+      {
+        "name": "Dylan",
+        "review": "Great Movie. 10/10.",
+        "rating": 5
+      },
+      {
+        "name": "Dylan",
+        "review": "Great Movie. 10/10.",
+        "rating": 5
+      },
+      {
+        "name": "Dylan",
+        "review": "Great Movie. 10/10.",
+        "rating": 5
+      },
+      {
+        "name": "Dylan",
+        "review": "Great Movie. 10/10.",
+        "rating": 5
+      },
+      {
+        "name": "Dylan",
+        "review": "Great Movie. 10/10.",
+        "rating": 5
+      }
+    ]
+}
