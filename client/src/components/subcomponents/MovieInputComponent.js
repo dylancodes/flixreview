@@ -16,20 +16,21 @@ class MovieInputComponent extends Component {
   }
 
   handleMovieSubmit(event) {
-    event.preventDefault
-    axios.post('/api/add-movie', {movie: this.movieTitle})
+    event.preventDefault();
+    this.props.wrapperFunction(this.state.movieTitle);
+    /*axios.post('/api/add-movie', {movie: this.movieTitle})
     .then((response) => {
       console.log(response);
-    })
+    })*/
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleMovieSubmit}>
+        <form>
           <input onChange={this.handleMovieChange} value={this.state.movieTitle} name="movie" className="movieInputComponent" type="text" placeholder="Insert a Movie Title..."/>
           <br/><br/>
-          <input className="movieInputComponent-Submit" type="submit" value="Submit"/>
+          <input className="movieInputComponent-Submit" onClick={this.handleMovieSubmit} type="submit" value="Submit"/>
         </form>
       </div>
     )

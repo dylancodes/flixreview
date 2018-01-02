@@ -11,7 +11,7 @@ class Top extends Component {
           <Container>
               <h1>Flixreview</h1>
               <h2>Rate & Review Movies on Netflix</h2>
-              <MovieInput />
+              <MovieInput wrapperFunction={this.props.wrapperFunction}/>
           </Container>
         </div>
 

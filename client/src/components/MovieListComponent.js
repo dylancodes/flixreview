@@ -10,7 +10,7 @@ class MovieListComponent extends Component {
         <Container>
           <h1>Movies</h1>
           <ul>
-            <MovieListItem />
+            <MovieListItem movieTitle={this.props.movieTitle}/>
           </ul>
         </Container>
       </div>

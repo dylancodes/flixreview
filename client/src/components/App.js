@@ -6,11 +6,24 @@ import MovieList from './MovieListComponent';
 import '../App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ""
+    };
+    this.wrapperFunction = this.wrapperFunction.bind(this);
+  }
+
+  wrapperFunction(inputData) {
+    console.log(inputData);
+    this.setState({ input: inputData });
+  }
+
   render() {
     return (
     <div>
-      <Top />
-      <MovieList />
+      <Top wrapperFunction={this.wrapperFunction}/>
+      <MovieList movieTitle={this.state.input}/>
     </div>
     );
   }
