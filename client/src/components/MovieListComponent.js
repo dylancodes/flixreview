@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Col, Row } from 'react-grid-system';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import MovieListItem from './subcomponents/MovieListItemComponent.js';
@@ -16,11 +17,16 @@ class MovieListComponent extends Component {
             </div>]
     }
     this.implementItem = this.implementItem.bind(this);
+    this.refreshPage = this.refreshPage.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.movieTitle !== nextProps.movieTitle) {
-      axios.post('/api/submit-movie', {movieTitle: nextProps.movieTitle})
+      axios.get('/api/submit-movie', {
+        params: {
+          movieTitle: nextProps.movieTitle
+        }
+      })
       .then((response) => {
         if(response.data === "Server error processing movie") {
           this.setState({ errorReturned: true });
@@ -49,8 +55,10 @@ class MovieListComponent extends Component {
       return ([
         <div key={1} className="missing-div">
           <h3 key={2}>"{this.state.missingTitle}" does not exist in the flixreview archive. Would you like to add it?</h3>
+            <Link to="/add-new-movie">
               <button key={3}>Yes</button>
-              <button key={4}>No</button>
+            </Link>
+              <button key={4} onClick={this.refreshPage}>No</button>
         </div>
       ]);
     } else if(this.state.movie != null){
@@ -62,6 +70,10 @@ class MovieListComponent extends Component {
         </div>
       ]);
     }
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 
   render() {

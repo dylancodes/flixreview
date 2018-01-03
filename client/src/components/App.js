@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
-import Top from './TopComponent.js'
-import MovieList from './MovieListComponent';
+import HomeWrapperComponent from './HomeWrapperComponent.js';
+import AddMovieComponent from './AddMovieComponent.js';
 
 import '../App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: ""
-    };
-    this.wrapperFunction = this.wrapperFunction.bind(this);
-  }
-
-  wrapperFunction(inputData) {
-    this.setState({ input: inputData });
-  }
 
   render() {
     return (
-    <div>
-      <Top wrapperFunction={this.wrapperFunction}/>
-      <MovieList movieTitle={this.state.input}/>
-    </div>
+      <div>
+      <Router>
+        <div>
+          <Route exact path="/" component={HomeWrapperComponent} />
+          <Route path="/add-new-movie" component={AddMovieComponent} />
+        </div>
+      </Router>
+      </div>
     );
   }
 }
