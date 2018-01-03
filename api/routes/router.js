@@ -19,7 +19,7 @@ router.post('/submit-movie', (req, res) => {
       res.send(false);
     } else {
       console.log(`${movieReq} found in database. Result sent.`);
-      res.send(movie);
+      res.json(movie);
     }
   });
 });

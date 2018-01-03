@@ -56,6 +56,44 @@
   border-width: 1px;
   font-weight: 700;
   letter-spacing: 4px;
+  margin-bottom: 25px;
+}
+
+.missing-div {
+  padding: 0px;
+  text-align: center;
+  border: solid;
+  border-color: grey;
+  border-width: 1px;
+  padding-bottom: 15px;
+  margin-bottom: 70px;
+}
+
+.missing-div h3 {
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 400;
+}
+
+.missing-div button {
+  background-color: orange;
+  color: white;
+  padding: 14px 33px 14px 33px;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 700;
+  border: none;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-left: 30px;
+}
+
+.found-div {
+  padding: 0px;
+  text-align: center;
+  border: solid;
+  border-color: grey;
+  border-width: 1px;
+  padding-bottom: 15px;
+  margin-bottom: 70px;
 }
 
 @keyframes App-logo-spin {

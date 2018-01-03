@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   wrapperFunction(inputData) {
-    console.log(inputData);
     this.setState({ input: inputData });
   }
 
