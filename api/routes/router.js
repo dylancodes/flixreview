@@ -4,9 +4,6 @@ const bodyParser = require('body-parser');
 
 const DummyData = require('../../db/models/data.json');
 const Movies = require('../../db/models/movies.js');
-//const UtilsClass = require('../utils/utils.js');
-
-//const Utils = new UtilsClass();
 
 router.get('/submit-movie/', (req, res) => {
   const movieReq = req.query.movieTitle;
@@ -24,9 +21,27 @@ router.get('/submit-movie/', (req, res) => {
   });
 });
 
-router.post('/create-movie', (req, res) => {
-  const movieTitle = req.body.movieTitle;
-  Movie
+router.post('/create-new-movie', (req, res) => {
+  const movie = {
+    movieTitle: req.body.movieTitle,
+    numberOfReviews: 1,
+    avgRating: req.body.rating,
+    reviews: [{
+      name: req.body.name,
+      review: req.body.review,
+      rating: req.body.rating
+    }]
+  };
+  const newMovie = new Movies(movie);
+  newMovie.save((err) => {
+    if(err) {
+      console.log("Error adding movie to archive: " + err);
+      res.send(false);
+    } else {
+      console.log(newMovie.movieTitle + " has been saved to the database");
+      res.send(true);
+    }
+  });
 });
 
 module.exports = router;
