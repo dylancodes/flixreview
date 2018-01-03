@@ -8,8 +8,8 @@ const Movies = require('../../db/models/movies.js');
 
 //const Utils = new UtilsClass();
 
-router.post('/submit-movie', (req, res) => {
-  const movieReq = req.body.movieTitle;
+router.get('/submit-movie/', (req, res) => {
+  const movieReq = req.query.movieTitle;
   Movies.findOne({ movieTitle: movieReq }, (err, movie) => {
     if(err) {
       console.log(err);
@@ -22,6 +22,11 @@ router.post('/submit-movie', (req, res) => {
       res.json(movie);
     }
   });
+});
+
+router.post('/create-movie', (req, res) => {
+  const movieTitle = req.body.movieTitle;
+  Movie
 });
 
 module.exports = router;
