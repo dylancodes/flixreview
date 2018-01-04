@@ -36,10 +36,10 @@ router.post('/create-new-movie', (req, res) => {
   newMovie.save((err) => {
     if(err) {
       console.log("Error adding movie to archive: " + err);
-      res.send(false);
+      res.send("Unable to add " + newMovie.title + " to the flixreview archive.");
     } else {
       console.log(newMovie.movieTitle + " has been saved to the database");
-      res.send(true);
+      res.send(newMovie.movieTitle + " has been saved to the database");
     }
   });
 });

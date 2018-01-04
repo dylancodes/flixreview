@@ -1,10 +1,17 @@
 import React from 'react';
+import { Container } from 'react-grid-system';
 
 class AddMovieFormComponent extends React.Component {
 
   render() {
     return (
-      <h1>World</h1>
+      <div>
+        <Container>
+          <h1>Add New Movie</h1>
+          <form>
+          </form>
+        </Container>
+      </div>
     )
   }
 }
