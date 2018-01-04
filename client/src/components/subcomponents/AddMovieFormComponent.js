@@ -41,12 +41,12 @@ class AddMovieFormComponent extends React.Component {
       <div>
         <Container>
           <h1>Add New Movie</h1>
-          <form>
+          <form className="center-div" id="newMovie-Form">
             <input className="addInput" onChange={this.handleInputChange} type="text" name="title" value={this.state.title} placeholder="Movie Title..." />
-            <input className="addInput" onChange={this.handleInputChange} type="text" name="rating" value={this.state.rating} placeholder="Rating..."/>
+            <input className="addInput" onChange={this.handleInputChange} type="text" name="rating" value={this.state.rating} placeholder="Rating (1-5)..."/>
             <input className="addInput" onChange={this.handleInputChange} type="text" name="name" value={this.state.name} placeholder="Your Name..."/>
-            <input className="addInput" onChange={this.handleInputChange} type="textarea" name="review" value={this.state.review} placeholder="Type your review here...."/>
-            <input className="addInput" onClick={this.handleInputSubmit} type="submit"  value="Submit"/>
+            <textarea className="addInput-Text" name="review" onChange={this.handleInputChange} form="newMovie-Form" placeholder="Type your review here" value={this.state.review} />
+            <input className="addInput-Submit" onClick={this.handleInputSubmit} type="submit"  value="Submit"/>
           </form>
         </Container>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Top from './TopComponent.js'
 import MovieList from './MovieListComponent';
+import Footer from './subcomponents/FooterComponent.js';
 
 class HomeWrapperComponent extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class HomeWrapperComponent extends Component {
       <div>
         <Top wrapperFunction={this.wrapperFunction}/>
         <MovieList movieTitle={this.state.input}/>
+        <Footer />
       </div>
     );
   }
