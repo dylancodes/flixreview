@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const DummyData = require('../../db/models/data.json');
 const Movies = require('../../db/models/movies.js');
 
-router.get('/submit-movie/', (req, res) => {
+router.get('/submit-movie', (req, res) => {
   const movieReq = req.query.movieTitle;
   Movies.findOne({ movieTitle: movieReq }, (err, movie) => {
     if(err) {
