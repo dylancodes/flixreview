@@ -10,7 +10,8 @@ class AddMovieFormComponent extends React.Component {
       title: '',
       rating: '',
       name: '',
-      review: ''
+      review: '',
+      responseFlag: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
@@ -32,7 +33,20 @@ class AddMovieFormComponent extends React.Component {
       }]
     })
     .then((response) => {
-      console.log(response.data);
+      if(response.headers.errorFlag === '009') {
+        console.log("Error Flag received from database in /AddMovieFormComponent.");
+        this.setState({
+          responseFlag: <div className="responseFlag">{response.data}</div>
+        });
+      }
+      this.setState({
+        title: '',
+        rating: '',
+        name: '',
+        review: '',
+        responseFlag: <div className="responseFlag">{response.data}</div>
+      });
+      console.log(response);
     })
   }
 
@@ -45,9 +59,10 @@ class AddMovieFormComponent extends React.Component {
             <input className="addInput" onChange={this.handleInputChange} type="text" name="title" value={this.state.title} placeholder="Movie Title..." />
             <input className="addInput" onChange={this.handleInputChange} type="text" name="rating" value={this.state.rating} placeholder="Rating (1-5)..."/>
             <input className="addInput" onChange={this.handleInputChange} type="text" name="name" value={this.state.name} placeholder="Your Name..."/>
-            <textarea className="addInput-Text" name="review" onChange={this.handleInputChange} form="newMovie-Form" placeholder="Type your review here" value={this.state.review} />
+            <textarea className="addInput-Text" name="review" onChange={this.handleInputChange} form="newMovie-Form" placeholder="Type your review here..." value={this.state.review} />
             <input className="addInput-Submit" onClick={this.handleInputSubmit} type="submit"  value="Submit"/>
           </form>
+          {this.state.responseFlag}
         </Container>
       </div>
     )

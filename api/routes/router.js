@@ -36,10 +36,11 @@ router.post('/create-new-movie', (req, res) => {
   newMovie.save((err) => {
     if(err) {
       console.log("Error adding movie to archive: " + err);
-      res.send("Unable to add " + newMovie.title + " to the flixreview archive.");
+      res.header('errorFlag', '009');
+      res.send("Uh oh! Unable to add " + newMovie.title + " to Flixreview.\nTry again or contact support for help.");
     } else {
       console.log(newMovie.movieTitle + " has been saved to the database");
-      res.send(newMovie.movieTitle + " has been saved to the database");
+      res.send("Success! " + newMovie.movieTitle + " has been added to Flixreview with your review.");
     }
   });
 });
