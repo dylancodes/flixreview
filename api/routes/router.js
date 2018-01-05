@@ -45,4 +45,14 @@ router.post('/create-new-movie', (req, res) => {
   });
 });
 
+router.get('/view-reviews', (req, res) => {
+  const movieJSON = req.query.movieJSON;
+  const movie = JSON.parse(movieJSON);
+  console.log("request made on /view-reviews");
+  res.send(movieJSON);
+  // res.redirect()
+
+
+});
+
 module.exports = router;
