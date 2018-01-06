@@ -10,24 +10,26 @@ class MovieReviewPageComponent extends React.Component {
       allReviews: <h1>Go Back and search for a movie first!</h1>
     }
     this.displayReviews = this.displayReviews.bind(this);
+    this.addReview = this.addReview.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(this.props.movie !== nextProps.movie) {
-      this.setState({ movie: nextProps.movie });
-    }
+  componentDidMount() {
+    this.displayReviews();
   }
 
   displayReviews() {
     if(this.state.movie) {
-      this.state.movie.reviews.forEach(addReview());
+      console.log("display ran");
+      this.state.movie.reviews.forEach(this.addReview);
     }
   }
 
   addReview(item) {
+    console.log("add ran");
+    console.log(item);
     this.setState({
-      allReviews: <p>item.review</p>
-    })
+      allReviews: <p>{item.review}</p>
+    });
   }
 
   render() {
