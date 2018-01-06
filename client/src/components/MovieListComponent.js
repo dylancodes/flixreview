@@ -62,7 +62,7 @@ class MovieListComponent extends Component {
         </div>
       ]);
     } else if(this.state.movie != null){
-      return <MovieListItem movie={this.state.movie}/>;
+      return <MovieListItem movieUtil={this.props.movieUtil} movie={this.state.movie}/>;
     } else {
       return ([
         <div key={1} className="missing-div">

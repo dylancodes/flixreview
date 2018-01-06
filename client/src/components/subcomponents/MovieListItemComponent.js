@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row, Container } from 'react-grid-system';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class MovieListItemComponent extends Component {
@@ -10,11 +11,7 @@ class MovieListItemComponent extends Component {
   }
 
   handleViewClick() {
-    const movieJSON = JSON.stringify(this.props.movie);
-    axios.get(`/api/view-reviews?movieJSON=${movieJSON}`)
-    .then((response) => {
-      console.log(response);
-    });
+    this.props.movieUtil(this.props.movie);
   }
 
   render() {
@@ -23,7 +20,9 @@ class MovieListItemComponent extends Component {
         <h3>{this.props.movie.movieTitle}</h3>
         <h3>{this.props.movie.numberOfReviews} Total Reviews</h3>
         <h3>Avg. Rating: {this.props.movie.avgRating}</h3>
-          <button className="frButton" onClick={this.handleViewClick}>View All Reviews</button>
+          <Link to="/movie/view-review">
+            <button className="frButton" onClick={this.handleViewClick}>View All Reviews</button>
+          </Link>
       </div>
     )
   }

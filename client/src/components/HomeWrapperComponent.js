@@ -21,7 +21,7 @@ class HomeWrapperComponent extends Component {
     return (
       <div>
         <Top wrapperFunction={this.wrapperFunction}/>
-        <MovieList movieTitle={this.state.input}/>
+        <MovieList movieUtil={this.props.movieUtil} movieTitle={this.state.input}/>
         <Footer />
       </div>
     );
