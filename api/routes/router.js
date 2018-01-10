@@ -22,28 +22,58 @@ router.get('/submit-movie', (req, res) => {
 });
 
 router.post('/create-new-movie', (req, res) => {
+  const data = req;
   const movie = {
     movieTitle: req.body.movieTitle,
     numberOfReviews: 1,
     avgRating: req.body.rating,
-    reviews: [{
-      name: req.body.name,
-      review: req.body.review,
-      rating: req.body.rating
-    }]
+    reviews: []
   };
-  const newMovie = new Movies(movie);
-  newMovie.save((err) => {
-    if(err) {
-      console.log("Error adding movie to archive: " + err);
-      res.header('errorFlag', '009');
-      res.send("Uh oh! Unable to add " + newMovie.title + " to Flixreview.\nTry again or contact support for help.");
-    } else {
-      console.log(newMovie.movieTitle + " has been saved to the database");
-      res.send("Success! " + newMovie.movieTitle + " has been added to Flixreview with your review.");
-    }
+
+  createMovieUtil(data)
+  .then((fulfilled) => {
+    movie.reviews.push(fulfilled);
+    return movie;
+  })
+  .then((fulfilled) => {
+    const newMovie = new Movies(fulfilled);
+    return newMovie;
+  })
+  .then((fulfilled) => {
+    fulfilled.save((err) => {
+      if(err) {
+        console.log("Error adding movie to archive: " + err);
+        res.header('errorFlag', '009');
+        res.send("Uh oh! Unable to add " + fulfilled.movieTitle + " to Flixreview.\nTry again or contact support for help.");
+      } else {
+        console.log(fulfilled.movieTitle + " has been saved to the database");
+        res.send("Success! " + fulfilled.movieTitle + " has been added to Flixreview with your review.");
+      }
+    });
+  })
+  .catch((error) => {
+    console.log("Error adding movie to archive: " + err);
+    res.header('errorFlag', '009');
+    res.send("Uh oh! Unable to add the movie to Flixreview.\nTry again or contact support for help.");
   });
 });
+
+const createMovieUtil = (request) => {
+  const req = request;
+  return new Promise((resolve, reject) => {
+    if(req) {
+      const review = {
+        name: req.body.name,
+        review: req.body.review,
+        rating: req.body.rating
+      }
+      resolve(review);
+    }
+    else {
+      reject(new Error("Error in create-movie promise utility"));
+    }
+  });
+}
 
 router.get('/view-reviews', (req, res) => {
   const movieJSON = req.query.movieJSON;
